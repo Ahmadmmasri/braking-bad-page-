@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-warning">
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
+        <div class="container">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="api.html">Character</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="ep.html">Episodes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="quot.html">Quotes</a>
+                    </li>
+                </ul>
+          </nav>
+        </div>
+
+    <div class="container">
+        <table id='con' class="table table-dark">
+            <thead>
+                <tr>
+                    <th>episode_id</th>
+                    <th>title</th>
+                    <th>season</th>
+                </tr>
+            </thead>
+            <tbody id="tb-r">
+                
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const api= "https://www.breakingbadapi.com/api/episodes/";
+        async function get(){
+            try{
+            // wait to get all data from api and then countinue
+            const response = await fetch(api);
+            // wait to get json file from api
+            const data = await response.json();
+            // print info in console
+             console.log(data);
+             printata(data);
+            }
+            catch(e){
+                console.log("Error",e.message);
+            }
+
+        }
+
+        function printata(data){
+        const content= document.querySelector('#tb-r');
+
+        content.innerHTML+=`
+        
+        ${data.map(charr => `<tr>
+            <td>${charr.episode_id}</td><td>${charr.title}</td><td>${charr.season}</td>`)}
+            </tr>`
+        
+        console.log(header); 
+
+    }
+
+        
+        get();
+
+
+    </script>
+</body>
+</html>
